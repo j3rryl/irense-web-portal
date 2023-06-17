@@ -4,9 +4,10 @@ import React, { useEffect, useRef } from "react";
 import { APP_NAME } from "../utils/constants";
 import { handleSignIn } from "../api/authentication/auth";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Toaster, toast } from "react-hot-toast";
-import { error } from "console";
-import { LOGIN_SUCCESS } from "../utils/response";
+import { INCORRECT_PASSWORD, LOGIN_SUCCESS } from "../utils/response";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const AuthPage = () => {
     
@@ -22,7 +23,7 @@ const AuthPage = () => {
         const formData = new FormData(form);
         const username = String(formData.get('username'));    
         const password = String(formData.get('password'));  
-        const callbackUrl = searchParams?.get('callbackUrl')
+        const callbackUrl = searchParams?.get('callbackUrl') || "/"
         // toast.promise(
         //     handleSignIn({username, password, callbackUrl}),
         //      {
@@ -39,7 +40,11 @@ const AuthPage = () => {
                     router.push(`${response?.url}`)
                 }, 1500);
             } else {
-                toast.error(`${response?.error}`);
+                if(`${response?.error}`=== `${INCORRECT_PASSWORD}`){
+                    toast.warn(`${response?.error}`);
+                } else {
+                    toast.error(`${response?.error}`);
+                }
             }
             
         }).catch((error)=>{
@@ -48,10 +53,6 @@ const AuthPage = () => {
     }
   return (
     <>
-    <Toaster
-    position="top-right"
-    reverseOrder={false}
-    />
     <section className="bg-gray-50 dark:bg-gray-900">
     <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
@@ -84,6 +85,7 @@ const AuthPage = () => {
                         <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
                     </div>
                     <button type="submit" className="w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-white dark:bg-primary dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+                        <ToastContainer />
                 </form>
             </div>
         </div>

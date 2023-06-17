@@ -4,7 +4,7 @@ import type { NextAuthOptions } from "next-auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "@/app/api/firebase/firebaseConf";
 import { errorCodes } from "@/app/api/firebase/responseCodes";
-import { DEFAULT_ERROR, INCORRECT_PASSWORD, USER_NOT_FOUND } from "@/app/utils/response";
+import { ACCOUNT_BLOCKED, DEFAULT_ERROR, INCORRECT_PASSWORD, USER_NOT_FOUND } from "@/app/utils/response";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -33,9 +33,10 @@ export const authOptions: NextAuthOptions = {
             throw new Error(INCORRECT_PASSWORD);
           } else if (error.code === errorCodes.USER_NOT_FOUND) {
             throw new Error(USER_NOT_FOUND);
+          } else if (error.code === errorCodes.TOO_MANY_REQUESTS) {
+            throw new Error(ACCOUNT_BLOCKED);
           } else {
             console.log("Unknown error", error);
-            
             throw new Error(DEFAULT_ERROR);
           }
         });
