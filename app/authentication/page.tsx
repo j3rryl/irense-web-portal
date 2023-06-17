@@ -31,10 +31,7 @@ const AuthPage = () => {
         //        success: (data)=>`${data?.error}`,
         //        error: (error)=> `${error.error}`,
         //      }
-        //    );
-        console.log("callbackUrl", callbackUrl);
-        
-         
+        //    );         
         const res = await handleSignIn({username, password, callbackUrl}).then((response)=>{
             if(response?.ok){
                 toast.success(`${LOGIN_SUCCESS}`);
