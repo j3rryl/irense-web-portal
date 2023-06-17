@@ -29,15 +29,15 @@ export const authOptions: NextAuthOptions = {
           return response;
         }).catch((error)=>{
           // Handle specific error cases
-          if (error.code === errorCodes.WRONG_PASSWORD) {
-            throw new Error(INCORRECT_PASSWORD);
-          } else if (error.code === errorCodes.USER_NOT_FOUND) {
-            throw new Error(USER_NOT_FOUND);
-          } else if (error.code === errorCodes.TOO_MANY_REQUESTS) {
-            throw new Error(ACCOUNT_BLOCKED);
-          } else {
-            console.log("Unknown error", error);
-            throw new Error(DEFAULT_ERROR);
+          switch (error.code) {
+            case errorCodes.WRONG_PASSWORD:
+              throw new Error(INCORRECT_PASSWORD);
+            case errorCodes.USER_NOT_FOUND:
+              throw new Error(USER_NOT_FOUND);
+            case errorCodes.TOO_MANY_REQUESTS:
+              throw new Error(ACCOUNT_BLOCKED);
+            default:
+              throw new Error(DEFAULT_ERROR);
           }
         });
         const user = response;
