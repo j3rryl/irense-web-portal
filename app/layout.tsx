@@ -9,6 +9,8 @@ export const metadata = {
 }
 
 import AuthContext from "./api/AuthContext";
+import ResponsiveAppBar from './components/ResponsiveAppBar';
+import ResponsiveSidebar from './components/ResponsiveSidebar';
 
 export default function RootLayout({
   children,
@@ -21,7 +23,7 @@ export default function RootLayout({
     <html>
       <body className={inter.className}>
         <AuthContext>
-          {children}
+          <ResponsiveSidebar appBar={<ResponsiveAppBar/>} content={children}/>
         </AuthContext>
       </body>
     </html>
