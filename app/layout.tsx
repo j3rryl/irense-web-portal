@@ -8,18 +8,6 @@ export const metadata = {
   description: 'Diabetic Retinopathy Web Portal',
 }
 
-// export default function RootLayout({
-//   children,
-// }: {
-//   children: React.ReactNode
-// }) {
-//   return (
-//     <html lang="en">
-//       <body className={inter.className}>{children}</body>
-//     </html>
-//   )
-// }
-
 import AuthContext from "./api/AuthContext";
 
 export default function RootLayout({
@@ -28,7 +16,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  console.log("layout", { props }); // empty
+  // console.log("layout", { props }); // empty
   return (
     <html>
       <body className={inter.className}>
