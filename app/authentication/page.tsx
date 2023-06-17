@@ -23,7 +23,7 @@ const AuthPage = () => {
         const formData = new FormData(form);
         const username = String(formData.get('username'));    
         const password = String(formData.get('password'));  
-        const callbackUrl = searchParams?.get('callbackUrl') || "/"
+        const callbackUrl = searchParams?.get('callbackUrl') || "/dashboard"
         // toast.promise(
         //     handleSignIn({username, password, callbackUrl}),
         //      {
@@ -32,12 +32,16 @@ const AuthPage = () => {
         //        error: (error)=> `${error.error}`,
         //      }
         //    );
+        console.log("callbackUrl", callbackUrl);
+        
          
         const res = await handleSignIn({username, password, callbackUrl}).then((response)=>{
             if(response?.ok){
                 toast.success(`${LOGIN_SUCCESS}`);
+                
                 setTimeout(() => {
-                    router.push(`${response?.url}`)
+
+                    callbackUrl === "/dashboard" ? router.push(`${response?.url}`) : [router.push(`${response?.url}`),router.refresh()];
                 }, 1500);
             } else {
                 if(`${response?.error}`=== `${INCORRECT_PASSWORD}`){

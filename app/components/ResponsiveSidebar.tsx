@@ -21,6 +21,7 @@ import { AutoGraphOutlined, PrecisionManufacturingOutlined, VaccinesOutlined } f
 import { APP_NAME } from '../utils/constants';
 
 const drawerWidth = 240;
+const minDrawerWidth = 230;
 const pages = [
   {
     name: "Dashboard",
@@ -130,7 +131,7 @@ export default function ResponsiveSidebar(props: Props) {
           variant="permanent"
           sx={{
             display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: minDrawerWidth, boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)" },
           }}
           open
         >

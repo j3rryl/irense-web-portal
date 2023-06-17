@@ -8,10 +8,9 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { APP_NAME } from '../utils/constants';
+import { handleSignOut } from '../api/authentication/auth';
 
 const profile = ['Log Out', 'Account'];
 const drawerWidth = 240;
@@ -37,7 +36,7 @@ function ResponsiveAppBar() {
   }
 
   const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+    handleSignOut();
   };
 
   return (

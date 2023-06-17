@@ -1,5 +1,5 @@
 import { loginCredentials } from "@/app/interfaces";
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 
 export const handleSignIn = async (data: loginCredentials) => {    
     const response = await signIn("credentials", {
@@ -9,4 +9,7 @@ export const handleSignIn = async (data: loginCredentials) => {
       callbackUrl: `${data.callbackUrl}`,
     });
     return response;
+  };
+  export const handleSignOut = () => {
+    signOut({ callbackUrl: "/authentication" });
   };
