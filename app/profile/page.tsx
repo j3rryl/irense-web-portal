@@ -1,25 +1,20 @@
-import { getServerSession } from 'next-auth/next'
-import { redirect } from 'next/navigation'
-import { authOptions } from '@/pages/api/auth/[...nextauth]'
+"use client";
+import { useSession } from 'next-auth/react'
+import { redirect, usePathname } from 'next/navigation';
 
-const Page = async () => {
-  const session = await getServerSession(authOptions)
-  console.log("session ",session);
-  
-
-  if (!session) {
-    // redirect('/signin?callbackUrl=/profile')
-    console.log("No session");
-    
-  }
-
+export default function Home() {
+  const pathname = usePathname();
+  const { data: session } = useSession({
+    required: true,
+    onUnauthenticated() {
+      redirect(`/authentication?callbackUrl=${window.location.origin + pathname}`)
+    }
+  })
   return (
-    <section className='py-24'>
-      <div className='container'>
-        <h1 className='text-2xl font-bold'>Profile</h1>
-      </div>
-    </section>
+    <>
+    <div>
+      This is the profile page page, sir.
+    </div>
+    </>
   )
 }
-
-export default Page

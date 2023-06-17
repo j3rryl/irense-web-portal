@@ -6,7 +6,7 @@ export const handleSignIn = async (data: loginCredentials) => {
       username: data.username,
       password: data.password,
       redirect: true,
-    //   callbackUrl: "/",
+      callbackUrl: `${data.callbackUrl}`,
     });
     return response;
   };

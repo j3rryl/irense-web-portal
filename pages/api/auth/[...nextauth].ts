@@ -46,6 +46,9 @@ export const authOptions: NextAuthOptions = {
       session.user = token;
       return session;
     },
+    // async signIn(){
+    //   return "/"
+    // }
   },
 
   pages: {

@@ -1,4 +1,5 @@
 export interface loginCredentials{
     username:string,
-    password:string
+    password:string,
+    callbackUrl: string | null | undefined
 }

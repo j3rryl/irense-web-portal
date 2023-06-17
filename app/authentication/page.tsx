@@ -3,11 +3,13 @@
 import React, { useEffect, useRef } from "react";
 import { APP_NAME } from "../utils/constants";
 import { handleSignIn } from "../api/authentication/auth";
+import { useSearchParams } from "next/navigation";
 
 const AuthPage = () => {
-    useEffect(()=>{
+    const searchParams = useSearchParams()
 
-    },[])
+    useEffect(()=>{
+    },[searchParams])
     const formRef = useRef<HTMLFormElement>(null);
     const onSubmit = async(event: React.FormEvent<HTMLFormElement>) =>{
         event.preventDefault();
@@ -15,9 +17,10 @@ const AuthPage = () => {
         if (!form) return;
         const formData = new FormData(form);
         const username = String(formData.get('username'));    
-        const password = String(formData.get('password'));    
-        const res = await handleSignIn({username, password});
-        console.log("res from handle sign in", res);
+        const password = String(formData.get('password'));  
+        const callbackUrl = searchParams?.get('callbackUrl')
+         
+        const res = await handleSignIn({username, password, callbackUrl});
     }
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
