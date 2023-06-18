@@ -160,9 +160,12 @@ export default function ResponsiveSidebar(props: Props) {
       </Box>
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` },
+        marginTop:"5%",
+        marginRight:"1%",
+        background:"card.primary",
+        boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)" }}
       >
-        <Toolbar />
         {props.content}
       </Box>
     </Box>

@@ -29,6 +29,9 @@ export const getDesignTokens = (mode: PaletteMode) => ({
           selected: {
             primary:"#32887c",
             secondary:"#1c4646"
+          },
+          card: {
+            primary: "#fff"
           }
         }
       : {
@@ -50,6 +53,9 @@ export const getDesignTokens = (mode: PaletteMode) => ({
           selected: {
             primary:"#32887c",
             secondary:"#1c4646",
+          },
+          card: {
+            primary: "#fff"
           }
         }),
   },
