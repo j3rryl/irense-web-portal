@@ -11,15 +11,15 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { handleSignOut } from '../api/authentication/auth';
-import { Brightness7Outlined } from '@mui/icons-material';
+import { Brightness4Outlined, Brightness7Outlined } from '@mui/icons-material';
 import { ColorModeContext } from '../theme/ThemeContextProvider';
 
 const profile = ['Log Out', 'Account'];
 const drawerWidth = 240;
 
 function ResponsiveAppBar() {
-  const colorMode = React.useContext(ColorModeContext);
-
+  const colorMode = React.useContext(ColorModeContext);  
+  const [darkMode, setDarkMode] = React.useState<boolean>(false)
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   const [activeTab, setActiveTab] = React.useState<string>("home");
@@ -56,10 +56,13 @@ function ResponsiveAppBar() {
         <Toolbar disableGutters>         
           <Box sx={{ flexGrow: 1, justifyContent:"end", display: { xs: 'none', md: 'flex' }, gap:3, alignItems:"center" }}>
           <IconButton 
-            onClick={colorMode.toggleColorMode} 
+            onClick={()=>{
+              setDarkMode(!darkMode)
+              colorMode.toggleColorMode()
+            }} 
             color="inherit">
-                {/* {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />} */}
-              <Brightness7Outlined/>
+                {darkMode ? <Brightness7Outlined /> : <Brightness4Outlined />}
+                {/* <Brightness7Outlined /> */}
             </IconButton>
             <Tooltip title="Profile">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
