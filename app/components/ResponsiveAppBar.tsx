@@ -41,8 +41,9 @@ function ResponsiveAppBar() {
 
   return (
     <AppBar position="fixed" sx={{
-      backgroundColor:"white",
-      color:"black",
+      // backgroundColor:"white",
+      // color:"black",
+      backgroundImage: "linear-gradient(0deg, selected.primary 0%, selected.secondary 100%)",
       borderRadius:1,
       width: { sm: `calc(100% - ${drawerWidth}px)` },
         ml: { sm: `${drawerWidth}px` },

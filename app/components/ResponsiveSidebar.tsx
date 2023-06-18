@@ -26,7 +26,7 @@ const pages = [
   {
     name: "Dashboard",
     url:"/dashboard",
-    icon: <AutoGraphOutlined/>,
+    icon: <AutoGraphOutlined />,
   },
   {
     name: "Patients",
@@ -50,9 +50,14 @@ interface Props {
 }
 
 export default function ResponsiveSidebar(props: Props) {
+  const [activeTab, setActiveTab] = React.useState(pages[0])
   const router = useRouter()
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  React.useEffect(()=>{
+    setActiveTab(activeTab)
+  },[activeTab])
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -79,18 +84,30 @@ export default function ResponsiveSidebar(props: Props) {
       >
         {APP_NAME}
       </Typography> 
-      <Divider />
 
       <List>
         {pages.map((page, index) => (
           <ListItem key={index} disablePadding onClick={()=>{
-            router.push(`${page?.url}`)
+            setActiveTab(page);
+            router.push(`${page?.url}`);
+          }} sx={{
+            // backgroundColor: "#fefefe",
+            width:"98%",
+            margin:"0 auto",
+            borderRadius:2,
+            backgroundColor: `${page?.name === activeTab?.name?"selected.primary":"white"}`,
+            backgroundImage: `${page?.name === activeTab?.name?"linear-gradient(0deg, selected.primary 0%, selected.secondary 100%)":""}`,
+            // backgroundImage: `${page?.name === activeTab?.name?"linear-gradient(0deg, selected.secondary 0%, selected.primary 100%)":""}`,
           }}>
             <ListItemButton>
-              <ListItemIcon>
+              <ListItemIcon sx={{
+                color: `${page?.name === activeTab?.name?"icon.secondary":"icon.primary"}`
+              }}>
                 {page?.icon}
               </ListItemIcon>
-              <ListItemText primary={page?.name} />
+              <ListItemText primary={page?.name} sx={{
+                color: `${page?.name === activeTab?.name?"text.secondary":"text.primary"}`
+              }}/>
             </ListItemButton>
           </ListItem>
         ))}
