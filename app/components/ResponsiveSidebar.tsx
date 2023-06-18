@@ -98,7 +98,7 @@ export default function ResponsiveSidebar(props: Props) {
             width:"98%",
             margin:"0 auto",
             borderRadius:2,
-            backgroundColor: `${page?.name === activeTab?.name?"selected.primary":"white"}`,
+            backgroundColor: `${page?.name === activeTab?.name?"selected.primary":"background.default"}`,
             backgroundImage: `${page?.name === activeTab?.name?"linear-gradient(0deg, selected.primary 0%, selected.secondary 100%)":""}`,
             // backgroundImage: `${page?.name === activeTab?.name?"linear-gradient(0deg, selected.secondary 0%, selected.primary 100%)":""}`,
           }}>

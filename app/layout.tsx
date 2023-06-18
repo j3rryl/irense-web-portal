@@ -32,8 +32,6 @@ export default async function RootLayout({
       <body className={inter.className}>
         <AuthContext>
           <ThemeContextProvider>
-         {/* <ResponsiveSidebar appBar={<ResponsiveAppBar/>} content={children}/>  */}
-
           {session ? <ResponsiveSidebar appBar={<ResponsiveAppBar/>} content={children}/> : <AuthPage/>}
           </ThemeContextProvider>
         </AuthContext>
