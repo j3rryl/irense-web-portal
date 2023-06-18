@@ -16,13 +16,14 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { AutoGraphOutlined, PrecisionManufacturingOutlined, VaccinesOutlined } from '@mui/icons-material';
 import { APP_NAME } from '../utils/constants';
+import { pageType } from '../interfaces';
 
 const drawerWidth = 240;
 const minDrawerWidth = 230;
-const pages = [
+const pages: pageType[] = [
   {
     name: "Dashboard",
     url:"/dashboard",
@@ -50,14 +51,16 @@ interface Props {
 }
 
 export default function ResponsiveSidebar(props: Props) {
-  const [activeTab, setActiveTab] = React.useState(pages[0])
+  const pathname = usePathname();
+  const [activeTab, setActiveTab] = React.useState(pages?.find((page)=>`${page?.url}`==`${pathname}`));
+  
   const router = useRouter()
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   React.useEffect(()=>{
-    setActiveTab(activeTab)
-  },[activeTab])
+
+  },[activeTab, pathname])
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
