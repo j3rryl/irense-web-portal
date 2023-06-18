@@ -41,11 +41,15 @@ export const getDesignTokens = (mode: PaletteMode) => ({
           },
           text: {
             primary: "#fff",
-            secondary: grey[500],
+            secondary: "#fff",
           },
           icon: {
-            primary: "#000",
+            primary: "#fff",
             secondary: "#fff"
+          },
+          selected: {
+            primary:"#32887c",
+            secondary:"#1c4646",
           }
         }),
   },
