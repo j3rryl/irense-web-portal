@@ -1,5 +1,4 @@
-import ResponsiveAppBar from "../components/ResponsiveAppBar";
-import ResponsiveSidebar from "../components/ResponsiveSidebar";
+import LayoutProvider from "../layout-providers/LayoutProvider";
 
 export default function RootLayout({
   children,
@@ -9,7 +8,9 @@ export default function RootLayout({
 }) {
 
   return (
-    <ResponsiveSidebar appBar={<ResponsiveAppBar/>} content={children}/>
+    <LayoutProvider>
+      {children}
+    </LayoutProvider>
   );
 }
 
