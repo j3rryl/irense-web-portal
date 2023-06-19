@@ -1,5 +1,10 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
+import AuthContext from "./contexts/AuthContext";
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
+import { redirect } from 'next/navigation';
+import { ThemeContextProvider } from './theme/ThemeContextProvider';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -8,18 +13,8 @@ export const metadata = {
   description: 'Diabetic Retinopathy Web Portal',
 }
 
-import AuthContext from "./contexts/AuthContext";
-import ResponsiveAppBar from './components/ResponsiveAppBar';
-import ResponsiveSidebar from './components/ResponsiveSidebar';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/pages/api/auth/[...nextauth]';
-import { redirect } from 'next/navigation';
-import AuthPage from './authentication/page';
-import { ThemeContextProvider } from './theme/ThemeContextProvider';
-
 export default async function RootLayout({
-  children,
-  ...props
+  children
 }: {
   children: React.ReactNode;
 }) {
@@ -28,14 +23,15 @@ export default async function RootLayout({
   //   redirect(`/authentication?callbackUrl=/`)
   // }
   return (
-    <html>
+    <html lang='en'>
       <body className={inter.className}>
         <AuthContext>
           <ThemeContextProvider>
-          {session ? <ResponsiveSidebar appBar={<ResponsiveAppBar/>} content={children}/> : <AuthPage/>}
+            {children}
           </ThemeContextProvider>
         </AuthContext>
       </body>
     </html>
   );
 }
+

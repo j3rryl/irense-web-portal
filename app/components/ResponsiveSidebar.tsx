@@ -31,12 +31,12 @@ const pages: pageType[] = [
   },
   {
     name: "Patients",
-    url:"/patients",
+    url:"/dashboard/patients",
     icon: <VaccinesOutlined />
   },
   {
     name: "Tests",
-    url:"/tests",
+    url:"/dashboard/tests",
     icon: <PrecisionManufacturingOutlined/>
   }
 ]
