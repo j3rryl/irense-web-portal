@@ -27,7 +27,7 @@ function ResponsiveAppBar() {
   };
 
   const handleCloseUserMenu = () => {
-    handleSignOut();
+    setAnchorElUser(null);
   };
 
   return (
@@ -75,7 +75,7 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {profile.map((item) => (
-                <MenuItem key={item} onClick={handleCloseUserMenu}>
+                <MenuItem key={item} onClick={handleSignOut}>
                   <Typography textAlign="center" sx={{
                     color:"black",
                     fontSize:12
