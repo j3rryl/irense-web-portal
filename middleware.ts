@@ -7,12 +7,6 @@ export default withAuth(
     if (request.nextUrl.pathname.startsWith("/dashboard")) {
       return NextResponse.rewrite(new URL(pathname, request.url));
     }
-    if (request.nextUrl.pathname.startsWith("/tests")) {
-      return NextResponse.rewrite(new URL(pathname, request.url));
-    }
-    if (request.nextUrl.pathname.startsWith("/patients")) {
-      return NextResponse.rewrite(new URL(pathname, request.url));
-    }
   },
   {
     callbacks: {
@@ -26,15 +20,5 @@ export const config = {
   matcher: [
     "/",
     "/dashboard/:path*",
-    "/tests/:path*",
-    "/patients/:path*",
-    "/billing/:path*",
-    "/clients/:path*",
-    "/incidences/:path*",
-    "/packages/:path*",
-    "/partners/:path*",
-    "/reports/:path*",
-    "/settings/:path*",
-    "/users/:path*",
   ],
 };
