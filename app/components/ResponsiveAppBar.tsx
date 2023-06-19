@@ -20,24 +20,11 @@ const drawerWidth = 240;
 function ResponsiveAppBar() {
   const colorMode = React.useContext(ColorModeContext);  
   const [darkMode, setDarkMode] = React.useState<boolean>(false)
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-  const [activeTab, setActiveTab] = React.useState<string>("home");
 
-
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-  const changePage = (tab: string) =>{
-    setActiveTab(tab);
-  }
 
   const handleCloseUserMenu = () => {
     handleSignOut();
@@ -45,12 +32,13 @@ function ResponsiveAppBar() {
 
   return (
     <AppBar position="fixed" sx={{
-      // backgroundColor:"white",
-      // color:"black",
       backgroundImage: "linear-gradient(0deg, selected.primary 0%, selected.secondary 100%)",
       borderRadius:1,
       width: { sm: `calc(100% - ${drawerWidth}px)` },
+        // margin:{sm: ".2% .2%"}
         ml: { sm: `${drawerWidth}px` },
+        mr: ".2%",
+        mt: ".2%"
     }}>
       <Container>
         <Toolbar disableGutters>         
