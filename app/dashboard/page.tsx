@@ -9,20 +9,18 @@ const page = () => {
     <Typography
         variant="h6"
         noWrap
-        component="a"
-        href="/"
         sx={{
           display:"flex",
           justifyContent:"center",
           alignItems:"center",
-          fontSize:10,
+          fontSize:15,
           letterSpacing: '.1rem',
           color: 'text.primary',
           textDecoration: 'none',
           margin:".8rem 0"
         }}
       >
-        This is the Dashboard Page
+        Analytics
       </Typography> 
 
       <div className="grid grid-cols-2 gap-4">
