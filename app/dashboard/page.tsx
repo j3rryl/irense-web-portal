@@ -1,5 +1,6 @@
 "use client";
 import { Typography } from "@mui/material"
+import LineChartComponent from "../components/charts/LineChart";
 
 const page = () => {
   return (
@@ -22,6 +23,10 @@ const page = () => {
       >
         This is the Dashboard Page
       </Typography> 
+      <div className=" w-3/4 h-60">
+      <LineChartComponent/>
+
+      </div>
     </>
   )
 }
