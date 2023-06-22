@@ -1,6 +1,12 @@
 import * as React from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-
+import { styled } from '@mui/material';
+const StyledDataGrid = styled(DataGrid)`
+  &.MuiDataGrid-root .MuiDataGrid-columnHeader:focus,
+  &.MuiDataGrid-root .MuiDataGrid-cell:focus {
+    outline: none;
+  }
+`;
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'firstName', headerName: 'First name', width: 130 },
@@ -36,8 +42,8 @@ const rows = [
 
 export default function MuiDataTable() {
   return (
-    <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
+    <div style={{ height: 400, width: 'fit-content' }}>
+      <StyledDataGrid
       //Not good for large datasets though, Kindly check on that
         autoHeight
         rows={rows}

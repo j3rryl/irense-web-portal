@@ -23,7 +23,10 @@ const page = () => {
         Patients
       </Typography> 
       {/* <PatientsList/> */}
+      <div className="flex justify-center items-center">
       <MuiDataTable/>
+
+      </div>
     </>
   )
 }
