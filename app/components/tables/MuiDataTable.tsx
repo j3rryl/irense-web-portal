@@ -8,21 +8,21 @@ const StyledDataGrid = styled(DataGrid)`
   }
 `;
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
+  { field: 'id', headerName: 'ID', flex:1 },
+  { field: 'firstName', headerName: 'First name', flex:1 },
+  { field: 'lastName', headerName: 'Last name', flex:1 },
   {
     field: 'age',
     headerName: 'Age',
     type: 'number',
-    width: 90,
+    flex:1
   },
   {
     field: 'fullName',
     headerName: 'Full name',
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
-    width: 160,
+    flex:1,
     valueGetter: (params: GridValueGetterParams) =>
       `${params.row.firstName || ''} ${params.row.lastName || ''}`,
   },
@@ -42,7 +42,7 @@ const rows = [
 
 export default function MuiDataTable() {
   return (
-    <div style={{ height: 400, width: 'fit-content' }}>
+    <div style={{ height: 400, width: '100%' }}>
       <StyledDataGrid
       //Not good for large datasets though, Kindly check on that
         autoHeight
