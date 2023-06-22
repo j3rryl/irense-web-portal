@@ -1,4 +1,6 @@
 "use client";
+import PatientsList from "@/app/components/PatientList";
+import MuiDataTable from "@/app/components/tables/MuiDataTable";
 import { Typography } from "@mui/material"
 
 const page = () => {
@@ -7,21 +9,21 @@ const page = () => {
     <Typography
         variant="h6"
         noWrap
-        component="a"
-        href="/"
         sx={{
           display:"flex",
           justifyContent:"center",
           alignItems:"center",
-          fontSize:10,
+          fontSize:18,
           letterSpacing: '.1rem',
           color: 'text.primary',
           textDecoration: 'none',
           margin:".8rem 0"
         }}
       >
-        This is the Patients Page
+        Patients
       </Typography> 
+      {/* <PatientsList/> */}
+      <MuiDataTable/>
     </>
   )
 }

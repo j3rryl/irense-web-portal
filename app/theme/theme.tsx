@@ -21,6 +21,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
           text: {
             primary: "#000",
             secondary: "#fff",
+            tertiary: "#fff",
           },
           icon: {
             primary: "#000",
@@ -45,6 +46,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
           text: {
             primary: "#fff",
             secondary: "#fff",
+            tertiary: "#fff",
           },
           icon: {
             primary: "#fff",
