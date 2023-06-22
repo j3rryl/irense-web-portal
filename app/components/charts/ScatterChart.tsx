@@ -44,17 +44,6 @@ export default function ScatterChartComponent() {
           <Tooltip cursor={{ strokeDasharray: '3 3' }} />
           <Scatter name="Cases" data={data01} fill="#32887c" />
           <Legend />
-          {data01.map((entry, index) => (
-      <Label
-        key={`label-${index}`}
-        value={entry.category}
-        offset={15}
-        position="top"
-        fontSize={12}
-      />
-    ))}
-
-
         </ScatterChart>
       </ResponsiveContainer>
     );
