@@ -1,4 +1,5 @@
 "use client";
+import { ConfirmModal } from "@/app/components/confirm-modal/ConfirmModal";
 import { ACTIVE } from "@/app/utils/constants";
 import { Avatar, Badge, Box, Grid, Stack, Typography } from "@mui/material";
 
@@ -41,15 +42,13 @@ export default function Page({ params }: { params: { slug: number } }) {
           }}>
             {item?.value}
           </Typography>
-          }
-            
-              
+          }  
             </Grid>
           )
         })}
 
       </Grid>
-
+        <ConfirmModal/>
       </>
     )
   }
