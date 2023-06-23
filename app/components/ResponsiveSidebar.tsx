@@ -103,7 +103,7 @@ export default function ResponsiveSidebar(props: Props) {
                 {page?.icon}
               </ListItemIcon>
               <ListItemText primary={page?.name} sx={{
-                color: `${page?.name === activeTab?.name?"text.secondary":"text.primary"}`
+                color: `${page?.name === activeTab?.name?"text.tertiary":"text.primary"}`
               }}/>
             </ListItemButton>
           </ListItem>

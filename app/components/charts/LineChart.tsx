@@ -1,4 +1,4 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Legend, ResponsiveContainer, Tooltip } from 'recharts';
 
 const data = [
   {
@@ -51,6 +51,7 @@ export default function LineChartComponent() {
           <XAxis dataKey="name" fontSize={12} />
           <YAxis 
           label={{ value: 'No. of Cases', angle: -90, position: 'insideLeft', fontSize:12 }} fontSize={13}/>
+          <Tooltip/>
           <Legend />
           <Line type="monotone" dataKey="Cases" stroke="#8884d8" activeDot={{ r: 8 }} />
           <Line type="monotone" dataKey="Tests" stroke="#82ca9d" />

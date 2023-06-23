@@ -1,5 +1,5 @@
 import { PaletteMode } from "@mui/material";
-import { amber, deepOrange, grey, teal, red } from "@mui/material/colors";
+import { amber, deepOrange, grey, teal, yellow } from "@mui/material/colors";
 
 const theme = {
   palette: {
@@ -20,7 +20,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
           },
           text: {
             primary: "#000",
-            secondary: "#fff",
+            secondary: grey[300],
             tertiary: "#fff",
           },
           icon: {
@@ -45,7 +45,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
           },
           text: {
             primary: "#fff",
-            secondary: "#fff",
+            secondary: grey[300],
             tertiary: "#fff",
           },
           icon: {
