@@ -10,3 +10,15 @@ export interface pageType{
     url: string,
     icon: ReactElement
 }
+
+export interface patientDetails{
+    id: number, 
+    lastName: string, 
+    firstName: string, 
+    age: number, 
+    phone:string, 
+    email:string, 
+    gender:string, 
+    lastTested: Date, 
+    status:string
+}
