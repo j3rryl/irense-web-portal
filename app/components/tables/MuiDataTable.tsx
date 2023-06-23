@@ -8,9 +8,6 @@ const StyledDataGrid = styled(DataGrid)`
   &.MuiDataGrid-root .MuiDataGrid-cell:focus {
     outline: none;
   }
-  .header-bold {
-    font-weight: bold;
-  }
 `;
 
 function generateRandomDate() {
@@ -24,16 +21,15 @@ const columns: GridColDef[] = [
   { field: 'name', 
     headerName: 'Name', 
     flex:1, 
-    headerClassName:"header-bold",
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
     valueGetter: (params: GridValueGetterParams) =>
       `${params.row.firstName || ''} ${params.row.lastName || ''}`,
 },
-  { field: 'phone', headerName: 'Phone', headerClassName:"header-bold", flex:1 },
-  { field: 'email', headerName: 'Email', headerClassName:"header-bold", flex:1 },
-  { field: 'age', headerName: 'Age', headerClassName:"header-bold", flex:1 },
-  { field: 'gender', headerName: 'Gender', headerClassName:"header-bold", flex:1 },
+  { field: 'phone', headerName: 'Phone', flex:1 },
+  { field: 'email', headerName: 'Email', flex:1 },
+  { field: 'age', headerName: 'Age', flex:1 },
+  { field: 'gender', headerName: 'Gender', flex:1 },
   {
     field: "status",
     headerName: "Status",
