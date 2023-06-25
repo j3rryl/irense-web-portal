@@ -14,6 +14,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { AutoGraphOutlined, PrecisionManufacturingOutlined, VaccinesOutlined } from '@mui/icons-material';
 import { APP_NAME } from '../utils/constants';
 import { pageType } from '../interfaces';
+import BreadCrumbsComponent from './BreadCrumbsComponent';
 
 const drawerWidth = 240;
 const minDrawerWidth = 230;
@@ -152,15 +153,22 @@ export default function ResponsiveSidebar(props: Props) {
           {drawer}
         </Drawer>
       </Box>
+      
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` },
+        sx={{ flexGrow: 1,  width: { sm: `calc(100% - ${drawerWidth}px)` },
         marginTop:"5%",
-        marginRight:".4%",
-        background:"card.primary",
-        boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)" }}
+        marginRight:".4%", }}
       >
+      <BreadCrumbsComponent />
+
+        <Box 
+        sx={{
+        p: 3,
+        background:"card.primary",
+        boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)" }}>
         {props.content}
+        </Box>
       </Box>
     </Box>
   );
