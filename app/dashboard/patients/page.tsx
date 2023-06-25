@@ -28,18 +28,19 @@ const page = () => {
   },
     { field: 'phone', headerName: 'Phone', flex:1 },
     { field: 'email', headerName: 'Email', flex:1 },
-    { field: 'age', headerName: 'Age', flex:1 },
-    { field: 'gender', headerName: 'Gender', flex:1 },
+    { field: 'age', headerName: 'Age', flex:.5, align:"center", headerAlign:"center" },
+    { field: 'gender', headerName: 'Gender', flex:.75, align:"center", headerAlign:"center" },
     {
       field: "status",
       headerName: "Status",
-      flex: 1,
+      flex: .8,
+      headerAlign:"center",
+      align:"center",
       cellClassName: "status",
       renderCell: (params) => {
         return (
           <Badge badgeContent={params?.value} color={params?.value===ACTIVE?.name?"primary":"warning"} sx={{
             width:"fit-content",
-            marginLeft:"10%",
             color:"text.primary"
           }} 
           className='!capitalize'/>
@@ -48,7 +49,7 @@ const page = () => {
     },
     { field: 'lastTested', 
     headerName: 'Last Test Date', 
-    flex:1, 
+    flex:1.25, 
     renderCell: (params) => (
       <>
       {params?.value?.toLocaleString()}
