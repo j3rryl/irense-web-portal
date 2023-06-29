@@ -106,9 +106,10 @@ const page = () => {
     <div className="flex justify-end">
       <button type="button" className="text-white bg-button hover:bg-button focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
       onClick={async ()=>{
-        const res = await fetch(`${API_URL}/rooms/`)
-        let me = await res.json()
-        console.log("me",me);
+        const res = await fetch('http://localhost:3000/api/test')
+        console.log("res", await res.json());
+        
+        
         
         // router.push("/dashboard/patients/add")
       }}>New Patient</button>
