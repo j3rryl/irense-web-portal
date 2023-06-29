@@ -9,7 +9,7 @@ const BreadCrumbsComponent = () => {
         }}
         // onClick={handleClick}
         >
-          MUI
+          Home
         </Link>,
         <Link
           underline="hover"
@@ -20,10 +20,10 @@ const BreadCrumbsComponent = () => {
         }}
         //   onClick={handleClick}
         >
-          Core
+          Dashboard
         </Link>,
         <Typography key="3" color="primary">
-          Breadcrumb
+          Patients
         </Typography>,
       ];
   return (

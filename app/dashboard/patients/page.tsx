@@ -103,6 +103,12 @@ const page = () => {
 
   return (
     <>
+    <div className="flex justify-end">
+      <button type="button" className="text-white bg-button hover:bg-button focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+      onClick={()=>{
+        router.push("/dashboard/patients/add")
+      }}>New Patient</button>
+    </div>
     <Typography
         variant="h6"
         noWrap
