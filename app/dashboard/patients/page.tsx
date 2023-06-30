@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { Typography } from "@mui/material"
 import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { Badge, IconButton, Stack, Tooltip } from '@mui/material';
@@ -7,13 +8,28 @@ import { Delete, Edit, Visibility } from '@mui/icons-material';
 import { MuiDataTable } from "@/app/components/tables/MuiDataTable";
 import { Patient } from "@/app/interfaces";
 import { getPatients } from "@/app/api-handler/patient/api";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 
-const page = async () => {
-  const patients = await getPatients()
+export default function Page() {
+  const router = useRouter()
+
+  // const patients = await getPatients()
   
-  // const router = useRouter()
+  const [patients, setPatients] = React.useState<Patient[]>([])
+  const [loading, setLoading] = React.useState<boolean>(true)
+
+  React.useEffect(() => {
+    const getData = async () => {
+      const data = await getPatients()
+      setPatients(data)
+      setLoading(false)
+    }
+    getData();
+    return () => {
+      // here you can clean the effect in case the component gets unmonth before the async function ends
+    }
+  },[])
   const columns: GridColDef[] = [
     // { field: 'id', headerName: 'ID', flex:1 },
     { field: 'name', 
@@ -66,15 +82,13 @@ const page = async () => {
             <Edit color={`primary`} />
           </IconButton>
           </Tooltip>
-          <Link href={`/dashboard/patients/${id}/`}>
           <Tooltip title="View">
           <IconButton aria-label="view" onClick={()=>{
-            // router.push(`/dashboard/patients/${id}`)
+            router.push(`/dashboard/patients/${id}/`)
           }}>
             <Visibility />
           </IconButton>
           </Tooltip>
-          </Link>
           <Tooltip title="Delete">
           <IconButton aria-label="delete">
             <Delete color={`error`} />
@@ -136,5 +150,3 @@ const page = async () => {
     </>
   )
 }
-
-export default page

@@ -3,7 +3,7 @@ import { Typography } from "@mui/material"
 import LineChartComponent from "../components/charts/LineChart";
 import ScatterChartComponent from "../components/charts/ScatterChart";
 
-const page = () => {
+const Page = () => {
   return (
     <>
     <Typography
@@ -36,4 +36,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

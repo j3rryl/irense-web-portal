@@ -1,7 +1,7 @@
 "use client";
 import { Typography } from "@mui/material"
 
-const page = () => {
+const Page = () => {
   return (
     <>
     <Typography
@@ -26,4 +26,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
