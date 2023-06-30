@@ -2,29 +2,26 @@
 import { Typography } from "@mui/material"
 import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { Badge, IconButton, Stack, Tooltip } from '@mui/material';
-import { ACTIVE, API_URL } from '@/app/utils/constants';
+import { ACTIVE } from '@/app/utils/constants';
 import { Delete, Edit, Visibility } from '@mui/icons-material';
-import { useRouter } from "next/navigation";
 import { MuiDataTable } from "@/app/components/tables/MuiDataTable";
-import { patientDetails } from "@/app/interfaces";
+import { Patient } from "@/app/interfaces";
+import { getPatients } from "@/app/api-handler/patient/api";
+import Link from "next/link";
 
-const page = () => {
-  const router = useRouter()
-  function generateRandomDate() {
-    return new Date(
-      new Date(2023, 0, 1).getTime() +
-        Math.random() * (new Date().getTime() - new Date(2023, 0, 1).getTime()),
-    );
-  }
+
+const page = async () => {
+  const patients = await getPatients()
+  
+  // const router = useRouter()
   const columns: GridColDef[] = [
     // { field: 'id', headerName: 'ID', flex:1 },
     { field: 'name', 
       headerName: 'Name', 
       flex:1, 
-      description: 'This column has a value getter and is not sortable.',
       sortable: false,
       valueGetter: (params: GridValueGetterParams) =>
-        `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+        `${params?.row?.first_name || ''} ${params?.row?.last_name || ''}`,
   },
     { field: 'phone', headerName: 'Phone', flex:1 },
     { field: 'email', headerName: 'Email', flex:1 },
@@ -39,7 +36,7 @@ const page = () => {
       cellClassName: "status",
       renderCell: (params) => {
         return (
-          <Badge badgeContent={params?.value} color={params?.value===ACTIVE?.name?"primary":"warning"} sx={{
+          <Badge badgeContent={params?.value} color={params?.value?.toLowerCase()===ACTIVE?.name?"primary":"warning"} sx={{
             width:"fit-content",
             color:"text.primary"
           }} 
@@ -47,12 +44,12 @@ const page = () => {
         );
       },
     },
-    { field: 'lastTested', 
+    { field: 'last_tested', 
     headerName: 'Last Test Date', 
     flex:1.25, 
     renderCell: (params) => (
       <>
-      {params?.value?.toLocaleString()}
+      {new Date(params?.value)?.toLocaleString()}
       </>
     ), },
     {
@@ -69,13 +66,15 @@ const page = () => {
             <Edit color={`primary`} />
           </IconButton>
           </Tooltip>
+          <Link href={`/dashboard/patients/${id}/`}>
           <Tooltip title="View">
           <IconButton aria-label="view" onClick={()=>{
-            router.push(`/dashboard/patients/${id}`)
+            // router.push(`/dashboard/patients/${id}`)
           }}>
             <Visibility />
           </IconButton>
           </Tooltip>
+          </Link>
           <Tooltip title="Delete">
           <IconButton aria-label="delete">
             <Delete color={`error`} />
@@ -88,29 +87,29 @@ const page = () => {
     
   
   ];
-  
-  const rows: patientDetails[] = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35, phone:"0745643237", email:"snow@gmail.com", gender:"Female", lastTested:generateRandomDate(), status:"active" },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42, phone:"0756478544", email:"cersei@gmail.com", gender:"Male", lastTested:generateRandomDate(), status:"inactive" },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45, phone:"0778546754", email:"lannister@gmail.com", gender:"Male", lastTested:generateRandomDate(), status:"inactive" },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16, phone:"0745644454", email:"stark@gmail.com", gender:"Male", lastTested:generateRandomDate(), status: "active" },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: 34, phone:"0767545645", email:"targaryen@gmail.com", gender:"Female", lastTested:generateRandomDate(), status:"active" },
-    { id: 6, lastName: 'Melisandre', firstName: "Parker", age: 41, phone:"0754674456", email:"melsandre@gmail.com", gender:"Female", lastTested:generateRandomDate(), status:"inactive" },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44, phone:"0777436744", email:"ferrara@gmail.com", gender:"Male", lastTested:generateRandomDate(), status:"active" },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36, phone:"0767446537", email:"rossini@gmail.com", gender:"Male", lastTested:generateRandomDate(), status:"inactive" },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65, phone:"0790428980", email:"roxie@gmail.com", gender:"Female", lastTested:generateRandomDate(), status:"active" },
-  ];
+  // console.log(patients);
+  const rows: Patient[] = patients?.map((patient: Patient)=>{
+    return {
+      id: patient?.id,
+      first_name: patient?.first_name, 
+      last_name: patient?.last_name, 
+      age: patient?.age, 
+      phone:patient?.phone, 
+      email:patient?.email, 
+      gender:patient?.email, 
+      last_tested:patient?.last_tested, 
+      created_at:patient?.created_at, 
+      updated_at:patient?.updated_at, 
+      status:patient?.status
+
+    }
+  })
 
   return (
     <>
     <div className="flex justify-end">
       <button type="button" className="text-white bg-button hover:bg-button focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-      onClick={async ()=>{
-        const res = await fetch('http://localhost:3000/api/test')
-        console.log("res", await res.json());
-        
-        
-        
+      onClick={()=>{
         // router.push("/dashboard/patients/add")
       }}>New Patient</button>
     </div>

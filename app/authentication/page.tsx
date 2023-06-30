@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { APP_NAME } from "../utils/constants";
-import { handleSignIn } from "../api/authentication/auth";
+import { handleSignIn } from "../api-handler/authentication/auth";
 import { useRouter, useSearchParams } from "next/navigation";
 import { INCORRECT_PASSWORD, LOGIN_SUCCESS } from "../utils/response";
 import { ToastContainer, toast } from "react-toastify";

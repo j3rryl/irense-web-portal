@@ -10,7 +10,7 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { handleSignOut } from '../api/authentication/auth';
+import { handleSignOut } from '../api-handler/authentication/auth';
 import { Brightness4Outlined, Brightness7Outlined } from '@mui/icons-material';
 import { ColorModeContext } from '../theme/ThemeContextProvider';
 

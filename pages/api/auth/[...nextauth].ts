@@ -2,8 +2,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth from "next-auth";
 import type { NextAuthOptions } from "next-auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { firebaseAuth } from "@/app/api/firebase/firebaseConf";
-import { errorCodes } from "@/app/api/firebase/responseCodes";
+import { firebaseAuth } from "@/app/api-handler/firebase/firebaseConf";
+import { errorCodes } from "@/app/api-handler/firebase/responseCodes";
 import { ACCOUNT_BLOCKED, DEFAULT_ERROR, INCORRECT_PASSWORD, USER_NOT_FOUND } from "@/app/utils/response";
 
 export const authOptions: NextAuthOptions = {

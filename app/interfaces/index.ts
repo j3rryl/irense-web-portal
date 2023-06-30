@@ -11,14 +11,17 @@ export interface pageType{
     icon: ReactElement
 }
 
-export interface patientDetails{
+export interface Patient{
     id: number, 
-    lastName: string, 
-    firstName: string, 
+    last_name: string, 
+    first_name: string, 
     age: number, 
     phone:string, 
     email:string, 
     gender:string, 
-    lastTested: Date, 
+    last_tested: Date, 
+    created_at: Date, 
+    updated_at: Date, 
     status:string
 }
+

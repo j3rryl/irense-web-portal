@@ -18,7 +18,7 @@ import {
             Are you sure you want to delete this user?
           </Typography>
           <Typography variant="subtitle2">
-            You can't undo this operation
+            You cant undo this operation
           </Typography>
         </DialogContent>
         <DialogActions>
