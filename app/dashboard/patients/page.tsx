@@ -12,10 +12,7 @@ import { useRouter } from "next/navigation";
 
 
 export default function Page() {
-  const router = useRouter()
-
-  // const patients = await getPatients()
-  
+  const router = useRouter()  
   const [patients, setPatients] = React.useState<Patient[]>([])
   const [loading, setLoading] = React.useState<boolean>(true)
 
@@ -124,7 +121,7 @@ export default function Page() {
     <div className="flex justify-end">
       <button type="button" className="text-white bg-button hover:bg-button focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
       onClick={()=>{
-        // router.push("/dashboard/patients/add")
+        router.push("/dashboard/patients/add")
       }}>New Patient</button>
     </div>
     <Typography
@@ -145,7 +142,6 @@ export default function Page() {
       </Typography> 
       <div className="flex justify-center items-center">
       <MuiDataTable rows={rows} columns={columns}/>
-
       </div>
     </>
   )

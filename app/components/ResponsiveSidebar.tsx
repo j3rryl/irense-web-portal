@@ -46,8 +46,8 @@ interface Props {
 }
 
 export default function ResponsiveSidebar(props: Props) {
-  const pathname = usePathname();
-  const [activeTab, setActiveTab] = React.useState(pages?.find((page)=>`${page?.url}`==`${pathname}`));
+  const pathname = usePathname();  
+  const [activeTab, setActiveTab] = React.useState(pages?.find((page)=>`${page?.url}`==`${(pathname?.split('/').slice(0, 3))?.join('/')}`));
   
   const router = useRouter()
   const { window } = props;

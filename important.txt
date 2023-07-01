@@ -1,0 +1,16 @@
+ // const patients = await getPatients()
+  
+  // const [patients, setPatients] = React.useState<Patient[]>([])
+  // const [loading, setLoading] = React.useState<boolean>(true)
+
+  // React.useEffect(() => {
+  //   const getData = async () => {
+  //     const data = await getPatients()
+  //     setPatients(data)
+  //     setLoading(false)
+  //   }
+  //   getData();
+  //   return () => {
+  //     // here you can clean the effect in case the component gets unmonth before the async function ends
+  //   }
+  // },[])
