@@ -7,7 +7,7 @@ import { ACTIVE } from '@/app/utils/constants';
 import { Delete, Edit, Visibility } from '@mui/icons-material';
 import { MuiDataTable } from "@/app/components/tables/MuiDataTable";
 import { Patient } from "@/app/interfaces";
-import { getPatients } from "@/app/api-handler/patient/api";
+import { getPatients } from "@/app/api-handler/patient";
 import { useRouter } from "next/navigation";
 
 

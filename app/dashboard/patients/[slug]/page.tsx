@@ -1,5 +1,5 @@
 "use client";
-import { getPatient } from "@/app/api-handler/patient/api";
+import { getPatient } from "@/app/api-handler/patient";
 import { ConfirmModal } from "@/app/components/confirm-modal/ConfirmModal";
 import { Patient } from "@/app/interfaces";
 import { ACTIVE } from "@/app/utils/constants";
