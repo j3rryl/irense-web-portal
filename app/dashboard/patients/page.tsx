@@ -14,9 +14,12 @@ import { useRouter } from "next/navigation";
 export default function Page() {
   const router = useRouter()  
   const [patients, setPatients] = React.useState<Patient[]>([])
+  const [selectedPatient, setSelectedPatient] = React.useState<number>()
+
   const [loading, setLoading] = React.useState<boolean>(true)
 
   React.useEffect(() => {
+    setSelectedPatient(selectedPatient)
     const getData = async () => {
       const data = await getPatients()
       setPatients(data)
@@ -26,7 +29,7 @@ export default function Page() {
     return () => {
       // here you can clean the effect in case the component gets unmonth before the async function ends
     }
-  },[])
+  },[selectedPatient])
   const columns: GridColDef[] = [
     // { field: 'id', headerName: 'ID', flex:1 },
     { field: 'name', 
@@ -73,16 +76,20 @@ export default function Page() {
       cellClassName: "actions",
       renderCell: ({id, row}) => {
         return (
-          <Stack direction="row" spacing={1}>
+          <Stack direction="row" spacing={1} 
+           >
           <Tooltip title="Edit">
             <IconButton aria-label="edit">
             <Edit color={`primary`} />
           </IconButton>
           </Tooltip>
           <Tooltip title="View">
-          <IconButton aria-label="view" onClick={()=>{
-            router.push(`/dashboard/patients/${id}/`)
-          }}>
+            <IconButton aria-label="View" onClick={
+              ()=>{
+                setSelectedPatient(row?.id)                
+                router.push(`/dashboard/patients/${row?.id}/`)
+              }
+            }>
             <Visibility />
           </IconButton>
           </Tooltip>
@@ -107,7 +114,7 @@ export default function Page() {
       age: patient?.age, 
       phone:patient?.phone, 
       email:patient?.email, 
-      gender:patient?.email, 
+      gender:patient?.gender, 
       last_tested:patient?.last_tested, 
       created_at:patient?.created_at, 
       updated_at:patient?.updated_at, 

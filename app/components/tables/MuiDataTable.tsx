@@ -12,7 +12,7 @@ const StyledDataGrid = styled(DataGrid)`
 
 export const MuiDataTable:React.FC<MuiDataTableProps> = ({rows, columns}) => {
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: "fit-content",width: '100%' }}>
       <StyledDataGrid
       //Not good for large datasets though, Kindly check on that
         autoHeight
@@ -20,7 +20,7 @@ export const MuiDataTable:React.FC<MuiDataTableProps> = ({rows, columns}) => {
         columns={columns}
         initialState={{
           pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
+            paginationModel: { page: 0, pageSize: 10 },
           },
         }}
         pageSizeOptions={[5, 10]}
