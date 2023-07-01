@@ -16,15 +16,18 @@ const Page = () => {
       if (!form) return;
       const formData = new FormData(form);
 
-      const formValues: { [key: string]: string } = {};
-      formData.forEach((value, key) => {
-        formValues[key as keyof Patient] = value.toString();
-      });
-      
+      const formValues: Patient = {
+        last_name: String(formData.get('last_name')),   
+        first_name:  String(formData.get('first_name')), 
+        age:  Number(formData.get('age')), 
+        phone:  String(formData.get('phone')), 
+        email:  String(formData.get('email')) ,
+        gender:  String(formData.get('gender')),
+      } as Patient
       const res = await addPatient({patient: formValues}).then((response)=>{
         toast.success(`${response}`);
         setTimeout(() => {
-            router.push("/dashboard/patients");
+          router.push("/dashboard/patients");
         }, 1800);
       }).catch((error)=>{
         toast.error(error)

@@ -32,7 +32,7 @@ export async function getPatient({id} : {id: number}) {
     return data;
 }
 
-export async function addPatient({patient} : {patient: any}) {
+export async function addPatient({patient} : {patient: Patient}) {
     const res = await fetch(`${API_URL}/patients/`, {
         method:'POST',
         headers: {

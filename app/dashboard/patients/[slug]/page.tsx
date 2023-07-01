@@ -1,22 +1,33 @@
 "use client";
+import { useState, useEffect } from "react";
 import { getPatient } from "@/app/api-handler/patient";
 import { ConfirmModal } from "@/app/components/confirm-modal/ConfirmModal";
 import { Patient } from "@/app/interfaces";
 import { ACTIVE } from "@/app/utils/constants";
-import { Avatar, Badge, Box, Grid, Stack, Typography } from "@mui/material";
+import { Avatar, Badge, Box, Grid, Typography } from "@mui/material";
 
-export default async function Page({ params }: { params: { slug: number } }) {
-  
-  const patient: Patient = await getPatient({id: params?.slug})
+export default function Page({ params }: { params: { slug: number } }) {
+  const [patient, setPatient] = useState <Patient>()
+
+  useEffect(() => {
+    const getData = async () => {
+      const data: Patient = await getPatient({id: params?.slug})
+      setPatient(data)
+    }
+    getData();
+    return () => {
+      // here you can clean the effect in case the component gets unmonth before the async function ends
+    }
+  },[])
   const properties =[
-    {title: "First Name", value:patient?.first_name}, 
-    {title:"Last Name", value:patient?.last_name}, 
-    {title:"Phone Number", value:patient?.phone},
-    {title:"Email", value:patient?.email}, 
-    {title:"Age", value:patient?.age}, 
-    {title:"Gender", value:patient?.gender},
-    {title:"Status", value:patient?.status}, 
-    {title:"Last Date Tested", value: new Date(patient?.last_tested)?.toLocaleString()}
+    {title: "First Name", value: patient?.first_name }, 
+    {title:"Last Name", value: patient?.last_name }, 
+    {title:"Phone Number", value: patient?.phone },
+    {title:"Email", value: patient?.email }, 
+    {title:"Age", value: patient?.age }, 
+    {title:"Gender", value: patient?.gender },
+    {title:"Status", value: patient?.status }, 
+    {title:"Last Date Tested", value: new Date(patient?.last_tested || new Date())?.toLocaleString() }
   ]
     return (
       <>
