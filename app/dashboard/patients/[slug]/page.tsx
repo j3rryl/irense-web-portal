@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import { getPatient } from "@/app/api-handler/patient";
-import { ConfirmModal } from "@/app/components/confirm-modal/ConfirmModal";
 import { Patient } from "@/app/interfaces";
 import { ACTIVE } from "@/app/utils/constants";
 import { Avatar, Badge, Box, Grid, Typography } from "@mui/material";

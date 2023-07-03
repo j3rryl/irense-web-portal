@@ -6,6 +6,7 @@ export async function getPatients() {
     // next: {
     //   revalidate: 3
     // },
+    method:'GET',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -20,6 +21,7 @@ export async function getPatients() {
 
 export async function getPatient({id} : {id: number}) {
     const res = await fetch(`${API_URL}/patients/${id}/`, {
+      method:'GET',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -58,8 +60,22 @@ export async function updatePatient({ patient } : { patient: { id: number, data:
     })  
     if (!res.ok) {
         // This will activate the closest `error.js` Error Boundary
-        throw new Error('Failed to fetch data')
+        throw new Error('Failed to update patient')
       }
     const data = await res.json()  
     return data.message;
+}
+
+export async function deletePatient({ id } : {id: number }) {
+  const res = await fetch(`${API_URL}/patients/${id}/`, {
+      method:'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+  })  
+  if (!res.ok) {
+      throw new Error('Failed to delete patient')
+    }
+  const data = await res.json()  
+  return data.message;
 }

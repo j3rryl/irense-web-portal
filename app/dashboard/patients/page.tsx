@@ -7,14 +7,34 @@ import { ACTIVE } from '@/app/utils/constants';
 import { Delete, Edit, Visibility } from '@mui/icons-material';
 import { MuiDataTable } from "@/app/components/tables/MuiDataTable";
 import { Patient } from "@/app/interfaces";
-import { getPatients } from "@/app/api-handler/patient";
+import { deletePatient, getPatients } from "@/app/api-handler/patient";
 import { useRouter } from "next/navigation";
+import ConfirmModal from "@/app/components/confirm-modal/ConfirmModal";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+
 
 
 export default function Page() {
   const router = useRouter()  
+  const [open, setOpen] = React.useState<boolean>(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const handleDelete = async()=>{
+    const res = await deletePatient({ id: selectedPatient?.id || 0 }).then((response)=>{
+      handleClose()
+      toast.success(`${response}`);
+      setTimeout(() => {
+        router.push("/dashboard/patients")
+        router.refresh()
+      }, 1500);      
+    }).catch((error)=>{
+      toast.error(error)
+    })
+    
+  }
   const [patients, setPatients] = React.useState<Patient[]>([])
-  const [selectedPatient, setSelectedPatient] = React.useState<number>()
+  const [selectedPatient, setSelectedPatient] = React.useState<Patient>()
 
   const [loading, setLoading] = React.useState<boolean>(true)
 
@@ -30,6 +50,10 @@ export default function Page() {
       // here you can clean the effect in case the component gets unmonth before the async function ends
     }
   },[selectedPatient])
+  React.useEffect(()=>{
+    setOpen(open)
+  },[open])
+
   const columns: GridColDef[] = [
     // { field: 'id', headerName: 'ID', flex:1 },
     { field: 'name', 
@@ -81,7 +105,7 @@ export default function Page() {
           <Tooltip title="Edit">
             <IconButton aria-label="edit" onClick={
               ()=>{
-                setSelectedPatient(row?.id)                
+                setSelectedPatient(row)                
                 router.push(`/dashboard/patients/edit/${row?.id}/`)
               }
             }>
@@ -91,7 +115,7 @@ export default function Page() {
           <Tooltip title="View">
             <IconButton aria-label="View" onClick={
               ()=>{
-                setSelectedPatient(row?.id)                
+                setSelectedPatient(row)                
                 router.push(`/dashboard/patients/${row?.id}/`)
               }
             }>
@@ -99,7 +123,12 @@ export default function Page() {
           </IconButton>
           </Tooltip>
           <Tooltip title="Delete">
-          <IconButton aria-label="delete">
+          <IconButton aria-label="delete" onClick={
+              ()=>{
+                setSelectedPatient(row)
+                handleOpen()                
+              }
+            }>
             <Delete color={`error`} />
           </IconButton>
           </Tooltip>
@@ -130,6 +159,8 @@ export default function Page() {
 
   return (
     <>
+    <ToastContainer/>
+    <ConfirmModal open={open} handleClose={handleClose} patient={selectedPatient} handleConfirm={handleDelete} />
     <div className="flex justify-end">
       <button type="button" className="text-white bg-button hover:bg-button focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
       onClick={()=>{
