@@ -10,7 +10,7 @@ const BreadCrumbsComponent = () => {
   useEffect(()=>{
 
   },[pathname])
-  const paths = pathname?.split('/')?.filter(item=>item?.length>2)
+  const paths = pathname?.split('/')?.filter(item=>item?.length>2||item==='')
   const breadcrumbs = paths?.map((item, index)=>{
   const isLastItem = index === paths.length - 1;
     return (
