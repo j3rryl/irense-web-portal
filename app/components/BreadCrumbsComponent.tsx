@@ -10,12 +10,13 @@ const BreadCrumbsComponent = () => {
   useEffect(()=>{
 
   },[pathname])
-  const paths = pathname?.split('/')
+  const paths = pathname?.split('/')?.filter(item=>item?.length>3)
   const breadcrumbs = paths?.map((item, index)=>{
   const isLastItem = index === paths.length - 1;
     return (
       <div key={index+1}>  
-        {isLastItem?
+        {
+        isLastItem?
         <Typography color="primary" 
         className="!capitalize">
           {item}
@@ -31,7 +32,6 @@ const BreadCrumbsComponent = () => {
           color:"gray"
           }}
           className="!capitalize"
-        // onClick={handleClick}
         >
           {item===''?'Home':item}
         </Link>

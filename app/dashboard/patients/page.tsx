@@ -116,7 +116,7 @@ export default function Page() {
             <IconButton aria-label="View" onClick={
               ()=>{
                 setSelectedPatient(row)                
-                router.push(`/dashboard/patients/${row?.id}/`)
+                router.push(`/dashboard/patients/view/${row?.id}/`)
               }
             }>
             <Visibility />
