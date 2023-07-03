@@ -32,7 +32,7 @@ export async function getPatient({id} : {id: number}) {
     return data;
 }
 
-export async function addPatient({patient} : {patient: Patient}) {
+export async function addPatient({ patient } : {patient: Patient}) {
     const res = await fetch(`${API_URL}/patients/`, {
         method:'POST',
         headers: {
@@ -48,14 +48,18 @@ export async function addPatient({patient} : {patient: Patient}) {
     return data.message;
 }
 
-export async function updatePatient({id} : {id: number}) {
-    const res = await fetch(`${API_URL}/patients/${id}/`, {
+export async function updatePatient({ patient } : { patient: { id: number, data: Patient }}) {
+    const res = await fetch(`${API_URL}/patients/${patient?.id}/`, {
         method:'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(patient?.data),
     })  
     if (!res.ok) {
         // This will activate the closest `error.js` Error Boundary
         throw new Error('Failed to fetch data')
       }
     const data = await res.json()  
-    return data;
+    return data.message;
 }

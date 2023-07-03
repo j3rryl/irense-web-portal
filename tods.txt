@@ -1,0 +1,11 @@
+Check on router.push the refresh story on auth
+Create theme 
+token as any
+API handler should not return a value *** done ***
+//Issue was when APIs were put in app/api directory
+navigation reload *** done ***
+// Issue was asyn Pages but not serverside components I think
+check on view navigation *** done ***
+// Async pages 
+patient as any???? ** done ***
+// Typescript stuff lol

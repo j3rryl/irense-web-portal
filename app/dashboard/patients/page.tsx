@@ -79,7 +79,12 @@ export default function Page() {
           <Stack direction="row" spacing={1} 
            >
           <Tooltip title="Edit">
-            <IconButton aria-label="edit">
+            <IconButton aria-label="edit" onClick={
+              ()=>{
+                setSelectedPatient(row?.id)                
+                router.push(`/dashboard/patients/edit/${row?.id}/`)
+              }
+            }>
             <Edit color={`primary`} />
           </IconButton>
           </Tooltip>
