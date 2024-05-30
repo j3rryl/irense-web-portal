@@ -49,9 +49,6 @@ export default function Page() {
       // here you can clean the effect in case the component gets unmonth before the async function ends
     }
   },[selectedPatient])
-  React.useEffect(()=>{
-    setOpen(open)
-  },[open])
 
   const columns: GridColDef[] = [
     // { field: 'id', headerName: 'ID', flex:1 },
