@@ -39,7 +39,6 @@ export default function Page() {
   const [loading, setLoading] = React.useState<boolean>(true)
 
   React.useEffect(() => {
-    setSelectedPatient(selectedPatient)
     const getData = async () => {
       const data = await getPatients()
       setPatients(data)
